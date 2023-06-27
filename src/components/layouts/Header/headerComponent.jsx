@@ -40,14 +40,14 @@ const HeaderComponent = () => {
       <Row justify="space-between" >
         <Link to="/" className="logoHidden">
           <Row className="brand">
-            <img
+            {/* <img
               src={Logo}
               alt="logo"
               className="logo-image"
               onClick={() => setCurrent("")}
-            />
+            /> */}
             <span type="text" className="logo-text">
-              Nusameals
+              Portofolio
             </span>
           </Row>
         </Link>
@@ -70,14 +70,9 @@ const HeaderComponent = () => {
               <Row justify="space-between" style={{ width:"100%" }}>
                 <Link to="/">
                   <Row className="brand">
-                    <img
-                      src={Logo}
-                      alt="logo"
-                      className="logo-image"
-                      onClick={() => setCurrent("")}
-                    />
+
                     <span type="text" className="logo-text">
-                      Nusameals
+                      Portofolio
                     </span>
                   </Row>
                 </Link>

@@ -25,7 +25,8 @@ import empal from './icons/empal.png';
 import maintenance from './icons/maintenance.svg';
 import Heromob from './images/heromob.svg';
 import pap from './images/1687804279288.jpg';
+import life from './images/lifelogo.png';
 
 
 
-export { Logo, GoogleButton, Customer1, Customer2, Customer3, NusantaraFood, Bulethero, Herofood, jahe, mangga, cincau, teh, iga, sateayam, satedaging, empal, Herobackground, heroic1, heroic2, heroic3, Heromob,  LoginIcon, NusaMealsLogin, ForgetPass, NewPass, maintenance,pap };
+export { Logo, GoogleButton, Customer1, Customer2, Customer3, NusantaraFood, Bulethero, Herofood, jahe, mangga, cincau, teh, iga, sateayam, satedaging, empal, Herobackground, heroic1, heroic2, heroic3, Heromob,  LoginIcon, NusaMealsLogin, ForgetPass, NewPass, maintenance,pap,life };

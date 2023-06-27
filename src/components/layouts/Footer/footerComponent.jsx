@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Row, Col, Space } from "antd";
+import { Layout, Row, Col, Space, Divider } from "antd";
 import "./footer.css";
 
 
@@ -9,14 +9,14 @@ const FooterComponent = () => {
     <Footer
       style={{
         textAlign: "center",
-        background: "#0669BD",
+        background: "#2b2a4c",
       }}
     >
-
-        <Row justify="center" align="middle">
+<p>{""}</p>      
+  <Row justify="center" align="middle">
           <Col xs={24} sm={24} md={20} lg={16} xl={16}>
             <Space direction="vertical">
-              <span className="footer-text">© 2023 NusaMeals</span>
+              <span className="footer-text">© 2023 Cantika Firalya</span>
             </Space>
           </Col>
         </Row>

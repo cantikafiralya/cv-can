@@ -17,7 +17,7 @@ import {
 } from "@ant-design/icons";
 import { CancelButton } from "../../components/buttonComponent/ButtonComponent";
 import "./homePage.css";
-import { menu, service, minum, feedback, heroex } from "./constant";
+import { menu, service, minum, feedback, heroex, heroex2 } from "./constant";
 import {
   GoogleButton,
   Logo,
@@ -212,181 +212,31 @@ const HomePage = () => {
             <h2 className="titleM">Project</h2>
 
             <Space direction="horizontal" style={{ justifyContent: 'center', margin: '20px' }}>
-  <Row justify="center" gutter={[16, 16]}>
-    {heroex.map((item) => (
-      <Col className="heroexc" key={item.id}>
-        <Card
-          hoverable
-          style={{ width: "240px", height: "320px" }}
-        >
-          <img
-            className="hlogo"
-            src={item.logo}
-            alt="logo"
-            style={{ width: "100%", height: "auto", maxHeight: "200px" }}
-          />
-          <Meta title={item.title} description={item.description} />
-        </Card>
-      </Col>
-    ))}
-  </Row>
+            <Row justify="center" gutter={[16, 16]}>
+  {heroex2.map((item) => (
+    <Col className="heroexc2" key={item.id}>
+      <Card hoverable style={{ width: "240px", height: "320px" }}>
+        <img
+          className="hlogo"
+          src={item.logo}
+          alt="logo"
+          style={{ width: "100%", height: "auto", maxHeight: "200px" }}
+        />
+        <Meta
+          title={item.judul}
+          description={<a href={item.desc} target="_blank" rel="noopener noreferrer">{item.desc}</a>}
+        />
+      </Card>
+    </Col>
+  ))}
+</Row>
+
 </Space>
 
 
           </section>
 
-          <section className="customer-feedback">
-            <h2 className="titleS">Our Customer FeedBack</h2>
-            <div>
-              {isMobile ? <FeedBackReviewMobile /> : <FeedBackReview />}
-            </div>
-            <div>{isMobile ? <SubsFormMobile /> : <SubsForm />}</div>
-          </section>
 
-          <section id="contact" className="CONTACT">
-            <Row justify="center" align="middle">
-              <Col
-                xs={24}
-                sm={24}
-                md={24}
-                lg={24}
-                xl={24}
-                className="cont-container"
-              >
-                <Space direction="horizontal">
-                  <Row gutter={[12, 32]} justify="center">
-                    <Col xs={24} sm={24} md={16} lg={16} xl={16}>
-                      <Space
-                        direction="vertical"
-                        className="container-col-contact"
-                      >
-                        <img src={Logo} alt="logo" className="contact-nusa" />
-                        <span className="text-experience">
-                          Experience the best of Nusantara cuisine at your
-                          fingertips.
-                        </span>
-                        <span className="cont-us">Contact Us</span>
-                        <div className="divider-cont-us" />
-                        <Row justify="start" align="middle">
-                          <div className="icon-container">
-                            <PhoneOutlined
-                              style={{
-                                fontSize: "25px",
-                                transform: "rotate(90deg)",
-                              }}
-                            />
-                          </div>
-                          <span className="phone-mail">+628592617712</span>
-                        </Row>
-                        <Row justify="start" align="middle">
-                          <div className="icon-container">
-                            <MailOutlined
-                              style={{
-                                fontSize: "25px",
-                              }}
-                            />
-                          </div>
-                          <span className="phone-mail">halo@nusameal.com</span>
-                        </Row>
-                      </Space>
-                    </Col>
-                    <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-                      <Space
-                        direction="vertical"
-                        className="container-col-contact"
-                      >
-                        <Button className="btn-google" />
-                        <Row gutter={12}>
-                          <Col span={8}>
-                            <ul style={{ paddingLeft: "0px" }}>
-                              <li className="list-btn-contact">
-                                <Button className="btn-list" type="text">
-                                  Home
-                                </Button>
-                              </li>
-                              <li className="list-btn-contact">
-                                <Button className="btn-list" type="text">
-                                  Service
-                                </Button>
-                              </li>
-                              <li className="list-btn-contact">
-                                <Button className="btn-list" type="text">
-                                  Menu
-                                </Button>
-                              </li>
-                              <li className="list-btn-contact">
-                                <Button className="btn-list" type="text">
-                                  Contact
-                                </Button>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col span={16}>
-                            <ul style={{ paddingLeft: "0px" }}>
-                              <li className="list-btn-contact">
-                                <Button className="btn-list" type="text">
-                                  Terms and Conditions
-                                </Button>
-                              </li>
-                              <li className="list-btn-contact">
-                                <Button className="btn-list" type="text">
-                                  Support
-                                </Button>
-                              </li>
-                              <li className="list-btn-contact">
-                                <Button className="btn-list" type="text">
-                                  Privacy Policy
-                                </Button>
-                              </li>
-                              <li className="list-btn-contact">
-                                <Space
-                                  wrap
-                                  direction="horizontal"
-                                  className="container-btn-social"
-                                >
-                                  <Button
-                                    className="btn-social"
-                                    icon={
-                                      <FacebookOutlined className="icon-social" />
-                                    }
-                                  />
-
-                                  <Button
-                                    className="btn-social"
-                                    icon={
-                                      <InstagramOutlined className="icon-social" />
-                                    }
-                                  />
-                                  <Button
-                                    className="btn-social"
-                                    icon={
-                                      <TwitterOutlined className="icon-social" />
-                                    }
-                                  />
-                                  <Button
-                                    className="btn-social"
-                                    icon={
-                                      <YoutubeOutlined className="icon-social" />
-                                    }
-                                  />
-                                  <Button
-                                    className="btn-social"
-                                    icon={
-                                      <PhoneOutlined className="icon-social" />
-                                    }
-                                  />
-                                </Space>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
-                      </Space>
-                    </Col>
-                  </Row>
-                </Space>
-              </Col>
-            </Row>
-          </section>
         </div>
       ))}
     </div>

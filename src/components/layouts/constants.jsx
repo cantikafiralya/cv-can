@@ -22,7 +22,7 @@ export const MENU_ITEM = [
   {
     label: (
       <ScrollLink to="services" smooth={true} duration={500} offset={-65}>
-        Services
+        Skill
       </ScrollLink>
     ),
     key: "services",
@@ -30,28 +30,10 @@ export const MENU_ITEM = [
   {
     label: (
       <ScrollLink to="menu" smooth={true} duration={500} offset={-65}>
-        Menu
+        Project
       </ScrollLink>
     ),
     key: "menu",
-  },
-  {
-    label: (
-      <ScrollLink to="contact" smooth={true} duration={500} offset={-65}>
-        Contact
-      </ScrollLink>
-    ),
-    key: "contact",
-  },
-  {
-    label: (
-      <Link to="/">
-        <Button shape="round" size="middle" className="btn-get">
-          Get the app
-        </Button>
-      </Link>
-    ),
-    key: "5",
   },
 ];
 

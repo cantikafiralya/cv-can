@@ -10,7 +10,7 @@ import mangga from "../../assets/icons/mangga.png";
 import cincau from "../../assets/icons/cincau.png";
 import teh from "../../assets/icons/teh.png";
 import { Customer1, Customer2, Customer3,  } from "../../assets";
-import { heroic1, heroic2, heroic3,Logo } from "../../assets/index";
+import { heroic1, heroic2, heroic3,Logo, life } from "../../assets/index";
 
 export const service = [
   {
@@ -135,15 +135,16 @@ export const heroex = [
   },
 ];
 
-// export const heroex2 = [
-//   {
-//     logo: Logo
-//     judul: "NusaMeals",
-//     desc: "https://nusameals.netlify.app",
-//   },
-//   {
-//     logo: ''
-//     judul: "LifeClass",
-//     desc: "https://lifeclass.netlify.app",
-//   },
-// ];
+export const heroex2 = [
+  {
+    logo: Logo,
+    judul: "NusaMeals",
+    desc: "https://nusameals.netlify.app",
+  },
+  {
+    logo: life,
+    judul: "LifeClass",
+    desc: "https://lifeclass.netlify.app",
+  }
+];
+
