@@ -10,7 +10,11 @@ import {
   Rate,
   Input,
 } from "antd";
-import { RightOutlined, LeftOutlined, WhatsAppOutlined } from "@ant-design/icons";
+import {
+  RightOutlined,
+  LeftOutlined,
+  WhatsAppOutlined,
+} from "@ant-design/icons";
 import { CancelButton } from "../../components/buttonComponent/ButtonComponent";
 import "./homePage.css";
 import { menu, service, minum, feedback, heroex } from "./constant";
@@ -38,17 +42,18 @@ import {
   InstagramOutlined,
   YoutubeOutlined,
   TwitterOutlined,
-  LinkedinOutlined, 
+  LinkedinOutlined,
   GithubOutlined,
 } from "@ant-design/icons";
 import { useQuery, gql } from "@apollo/client";
 import { GET_CV } from "./querydata";
 
 import useMediaQuery from "./query";
-import LoadingComponent from "../../components/loadingComponent/LoadingComponent"
+import LoadingComponent from "../../components/loadingComponent/LoadingComponent";
 // import { Link } from 'react-router-dom';
 
 import axios from "axios";
+const { Meta } = Card;
 
 const HomePage = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -58,7 +63,12 @@ const HomePage = () => {
   const onChange = ({ target: { value } }) => {
     setSection(value);
   };
-  if (loading) return <p><LoadingComponent/></p>;
+  if (loading)
+    return (
+      <p>
+        <LoadingComponent />
+      </p>
+    );
   if (error) return <p>Error : {error.message}</p>;
 
   const { cv } = data;
@@ -90,55 +100,77 @@ const HomePage = () => {
                   <div className="herotext1">
                     <h1 className="herodis">Hi Everyone, I am</h1>
                     <h1 className="heroher">{item.nama}</h1>
-                    <p style={{width:"500px"}}>
-                    {item.deskripsi} </p>{" "}
+                    <p style={{ width: "500px" }}>{item.deskripsi} </p>{" "}
                   </div>
-                  <Button type="primary"className="buttonget"       style={{ backgroundColor: "#2B2A4C", borderColor: "#2B2A4C" }}
->
-Contact me                  </Button>
-<Space
-  wrap
-  direction="horizontal"
-  className="herosocial"
-  style={{ marginRight: "80px" }}
->
-  <Button
-    className="heroic"
-    icon={
-      <a href="https://www.linkedin.com/in/cantikafiralya/" target="_blank" rel="noopener noreferrer">
-        <LinkedinOutlined className="heroicon" style={{ marginRight: "100px" }} />
-      </a>
-    }
-  />
+                  <br />
+                  <Button
+                    type="primary"
+                    className="buttonget"
+                    style={{
+                      backgroundColor: "#2B2A4C",
+                      borderColor: "#2B2A4C",
+                    }}
+                  >
+                    Contact me{" "}
+                  </Button>
+                  <Space
+                    wrap
+                    direction="horizontal"
+                    className="herosocial"
+                    style={{ marginRight: "80px" }}
+                  >
+                    <Button
+                      className="heroic"
+                      icon={
+                        <a
+                          href="https://www.linkedin.com/in/cantikafiralya/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <LinkedinOutlined className="heroicon" />
+                        </a>
+                      }
+                    />
 
-  <Button
-    className="heroic"
-    icon={
-      <a href="https://github.com/cantikafiralya" target="_blank" rel="noopener noreferrer">
-        <GithubOutlined className="heroicon" />
-      </a>
-    }
-  />
+                    <Button
+                      className="heroic"
+                      icon={
+                        <a
+                          href="https://github.com/cantikafiralya"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <GithubOutlined className="heroicon" />
+                        </a>
+                      }
+                    />
 
-  <Button
-    className="heroic"
-    icon={
-      <a href="mailto:tikafiralya@gmail.com" target="_blank" rel="noopener noreferrer">
-        <MailOutlined className="heroicon" />
-      </a>
-    }
-  />
+                    <Button
+                      className="heroic"
+                      icon={
+                        <a
+                          href="mailto:tikafiralya@gmail.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <MailOutlined className="heroicon" />
+                        </a>
+                      }
+                    />
 
-  <Button
-    className="heroic"
-    icon={
-      <a href="https://wa.me/+6281333144271" target="_blank" rel="noopener noreferrer">
-        <WhatsAppOutlined className="heroicon" />
-      </a>
-    }
-  />
-</Space>
-
+                    <Button
+                      className="heroic"
+                      icon={
+                        <a
+                          href="https://wa.me/+6281333144271"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <WhatsAppOutlined className="heroicon" />
+                        </a>
+                      }
+                    />
+                  </Space>
                 </div>
               </div>
             </div>
@@ -152,89 +184,55 @@ Contact me                  </Button>
             </h1>
           </div>
 
-          {isMobile ? <HeroCarousel /> : <HeroRow />}
-
           <section id="services" className="SERVICE">
-            <h2 className="titleS">
-              Skill
-            </h2>
+            <h2 className="titleS">Skill</h2>
             <div>
-            <div className="heroexcess">
-      <Space direction="horizontal">
-        <Row justify="center">
-          {heroex.map((item) => (
-            <Col className="heroexc">
-              <div className="herocontent">
-                <img className="hlogo" src={item.logo} alt="logo" />
-                <div className="hjuduldes">
-                  <p className="hjudul">{item.judul}</p>
-                  <p className="hdes">{item.desc}</p>
-                </div>
+              <div className="heroexcess">
+                <Space direction="horizontal">
+                  <Row justify="center">
+                    {heroex.map((item) => (
+                      <Col className="heroexc">
+                        <div className="herocontent">
+                          <img
+                            className="hlogo"
+                            src={item.logo}
+                            alt="logo"
+                            style={{ width: "200px" }}
+                          />
+                        </div>
+                      </Col>
+                    ))}
+                  </Row>
+                </Space>
               </div>
-            </Col>
-          ))}
-        </Row>
-      </Space>
-    </div>
             </div>
           </section>
 
           <section id="menu" className="MENU">
-            <h2 className="titleM">This Month Hottest Menu</h2>
-            <p className="descM">
-              the best of Indonesia's culinary treasures, all in one place
-            </p>
-            <div>
-              <Row justify="center" className="rowM" style={{ zIndex: 0 }}>
-                <Radio.Group
-                  defaultValue="food"
-                  value={section}
-                  onChange={onChange}
-                >
-                  <Radio.Button
-                    className="food"
-                    value="food"
-                    style={{ zIndex: 0 }}
-                  >
-                    Food's
-                  </Radio.Button>
-                  <Radio.Button
-                    className="drink"
-                    style={{ zIndex: 0 }}
-                    value="drink"
-                  >
-                    Drink's
-                  </Radio.Button>
-                </Radio.Group>
-              </Row>
-            </div>
-            <p className="lihat">Lihat Semua</p>
-            {isMobile ? (
-              <div
-                className="car"
-                style={{
-                  zIndex: 0,
-                  justifyContent: "center",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                {section === "food" ? (
-                  <FoodMenuCarousel />
-                ) : (
-                  <DrinkMenuCarousel />
-                )}
-              </div>
-            ) : (
-              <div
-                className="CARD"
-                style={{
-                  zIndex: 0,
-                }}
-              >
-                {section === "food" ? <FoodMenu /> : <DrinkMenu />}
-              </div>
-            )}
+            <h2 className="titleM">Project</h2>
+
+            <Space direction="horizontal" style={{ justifyContent: 'center', margin: '20px' }}>
+  <Row justify="center" gutter={[16, 16]}>
+    {heroex.map((item) => (
+      <Col className="heroexc" key={item.id}>
+        <Card
+          hoverable
+          style={{ width: "240px", height: "320px" }}
+        >
+          <img
+            className="hlogo"
+            src={item.logo}
+            alt="logo"
+            style={{ width: "100%", height: "auto", maxHeight: "200px" }}
+          />
+          <Meta title={item.title} description={item.description} />
+        </Card>
+      </Col>
+    ))}
+  </Row>
+</Space>
+
+
           </section>
 
           <section className="customer-feedback">
@@ -556,15 +554,10 @@ function HeroRow() {
 function HeroCarousel() {
   return (
     <div className="heroexcess">
-      <Carousel
-        className="herocar"
-        arrows={true}
-        prevArrow={<LeftOutlined />}
-        nextArrow={<RightOutlined />}
-      >
+
         {heroex.map((item) => (
           <Col className="heroexc">
-            <div className="herocontent">
+            <div className="herocontent" style={{backgroundColor:"white"}}>
               <img className="hlogo" src={item.logo} alt="logo" />
               <div className="hjuduldes">
                 <p className="hjudul">{item.judul}</p>
@@ -573,7 +566,6 @@ function HeroCarousel() {
             </div>
           </Col>
         ))}
-      </Carousel>
     </div>
   );
 }

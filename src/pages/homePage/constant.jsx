@@ -9,8 +9,8 @@ import jahe from "../../assets/icons/jahe.png";
 import mangga from "../../assets/icons/mangga.png";
 import cincau from "../../assets/icons/cincau.png";
 import teh from "../../assets/icons/teh.png";
-import { Customer1, Customer2, Customer3 } from "../../assets";
-import { heroic1, heroic2, heroic3 } from "../../assets/index";
+import { Customer1, Customer2, Customer3,  } from "../../assets";
+import { heroic1, heroic2, heroic3,Logo } from "../../assets/index";
 
 export const service = [
   {
@@ -114,18 +114,36 @@ export const feedback = [
 ];
 export const heroex = [
   {
-    logo: heroic1,
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
     judul: "Easy To Order",
     desc: "The convenience of ordering food only with the application",
   },
   {
-    logo: heroic2,
+    logo: "https://seeklogo.com/images/A/ant-design-logo-EAB6B3D5D9-seeklogo.com.png",
     judul: "Best Quality",
     desc: "The whole meal has guaranteed quality",
   },
   {
-    logo: heroic3,
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/2560px-Bootstrap_logo.svg.png",
+    judul: "Affordable Prices",
+    desc: "Stay thrifty while eating well",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png",
     judul: "Affordable Prices",
     desc: "Stay thrifty while eating well",
   },
 ];
+
+// export const heroex2 = [
+//   {
+//     logo: Logo
+//     judul: "NusaMeals",
+//     desc: "https://nusameals.netlify.app",
+//   },
+//   {
+//     logo: ''
+//     judul: "LifeClass",
+//     desc: "https://lifeclass.netlify.app",
+//   },
+// ];
