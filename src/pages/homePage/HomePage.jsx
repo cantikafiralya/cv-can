@@ -10,7 +10,7 @@ import {
   Rate,
   Input,
 } from "antd";
-import { RightOutlined, LeftOutlined } from "@ant-design/icons";
+import { RightOutlined, LeftOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { CancelButton } from "../../components/buttonComponent/ButtonComponent";
 import "./homePage.css";
 import { menu, service, minum, feedback, heroex } from "./constant";
@@ -28,6 +28,7 @@ import {
   cincau,
   teh,
   Heromob,
+  pap,
 } from "../../assets/index";
 
 import {
@@ -37,302 +38,359 @@ import {
   InstagramOutlined,
   YoutubeOutlined,
   TwitterOutlined,
+  LinkedinOutlined, 
+  GithubOutlined,
 } from "@ant-design/icons";
+import { useQuery, gql } from "@apollo/client";
+import { GET_CV } from "./querydata";
 
 import useMediaQuery from "./query";
-import { Link } from 'react-router-dom';
+import LoadingComponent from "../../components/loadingComponent/LoadingComponent"
+// import { Link } from 'react-router-dom';
 
+import axios from "axios";
 
 const HomePage = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const { loading, error, data } = useQuery(GET_CV);
 
   const [section, setSection] = useState("food");
   const onChange = ({ target: { value } }) => {
     setSection(value);
   };
+  if (loading) return <p><LoadingComponent/></p>;
+  if (error) return <p>Error : {error.message}</p>;
+
+  const { cv } = data;
+  console.log("CV Data:", cv);
 
   return (
     <div>
-      
-      <div className="heroback">
-        <h1
-          style={{
-            color: "white",
-            marginTop: "-2%",
-          }}
-        >
-          test
-        </h1>
-        <div className="hero">
-          <div className="herocontai">
-            <img class="herofood" src={Herofood} alt="Image" />
-
-            <div className="heroleft">
-              <div className="herotext1">
-                <h1 className="herodis">Discover the Rich Culinary </h1>
-                <h1 className="heroher">Heritage of Indonesia</h1>
-                <p>
-                  No more long lines, our app makes <br /> booking and order
-                  with our app, <br /> <b>the smart way to dine.</b>
-                </p>{" "}
-              </div>
-              <Button type="primary" className="buttonget">
-                Get the app
-              </Button>
-              <Space
-                wrap
-                direction="horizontal"
-                className="herosocial"
-                style={{ marginRight: "80px" }}
-              >
-                <Button
-                  className="heroic"
-                  icon={
-                    <FacebookOutlined
-                      className="heroicon"
-                      style={{ marginRight: "100px" }}
-                    />
-                  }
-                />
-
-                <Button
-                  className="heroic"
-                  icon={<InstagramOutlined className="heroicon" />}
-                />
-                <Button
-                  className="heroic"
-                  icon={<TwitterOutlined className="heroicon" />}
-                />
-              </Space>
-            </div>
-          </div>
-        </div>
-        <h1
-          style={{
-            color: "white",
-            marginTop: "-2%",
-          }}
-        >
-          test
-        </h1>
-      </div>
-
-      {isMobile ? <HeroCarousel /> : <HeroRow />}
-
-      <section id="services" className="SERVICE">
-        <h2 className="titleS">
-          Our Special Service <br />
-          from Nusantara Meals
-        </h2>
-        <div>
-          <Space direction="horizontal">
-            <Row justify="center">
-              {service.map((item) => (
-                <Col className="service">
-                  <img className="imgS" src={item.logo} alt="logo" />
-                  <div className="juduldescS">
-                    <p className="judulS">{item.judul}</p>
-                    <p className="descS">{item.desc}</p>
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          </Space>
-        </div>
-      </section>
-
-      <section id="menu" className="MENU">
-        <h2 className="titleM">This Month Hottest Menu</h2>
-        <p className="descM">
-          the best of Indonesia's culinary treasures, all in one place
-        </p>
-        <div>
-          <Row justify="center" className="rowM" style={{ zIndex: 0 }}>
-            <Radio.Group
-              defaultValue="food"
-              value={section}
-              onChange={onChange}
+      {cv.map((item) => (
+        <div key={item.id}>
+          <div className="heroback">
+            <h1
+              style={{
+                color: "white",
+                marginTop: "-2%",
+              }}
             >
-              <Radio.Button className="food" value="food" style={{ zIndex: 0 }}>
-                Food's
-              </Radio.Button>
-              <Radio.Button
-                className="drink"
-                style={{ zIndex: 0 }}
-                value="drink"
-              >
-                Drink's
-              </Radio.Button>
-            </Radio.Group>
-          </Row>
-        </div>
-        <p className="lihat">Lihat Semua</p>
-        {isMobile ? (
-          <div
-            className="car"
-            style={{
-              zIndex: 0,
-              justifyContent: "center",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            {section === "food" ? <FoodMenuCarousel /> : <DrinkMenuCarousel />}
+              test
+            </h1>
+            <div className="hero">
+              <div className="herocontai">
+                <img
+                  class="herofood"
+                  src={pap}
+                  alt="Image"
+                  style={{ borderRadius: "50%", width: "40%" }}
+                />
+
+                <div className="heroleft">
+                  <div className="herotext1">
+                    <h1 className="herodis">Hi Everyone, I am</h1>
+                    <h1 className="heroher">{item.nama}</h1>
+                    <p style={{width:"500px"}}>
+                    {item.deskripsi} </p>{" "}
+                  </div>
+                  <Button type="primary"className="buttonget"       style={{ backgroundColor: "#2B2A4C", borderColor: "#2B2A4C" }}
+>
+Contact me                  </Button>
+<Space
+  wrap
+  direction="horizontal"
+  className="herosocial"
+  style={{ marginRight: "80px" }}
+>
+  <Button
+    className="heroic"
+    icon={
+      <a href="https://www.linkedin.com/in/cantikafiralya/" target="_blank" rel="noopener noreferrer">
+        <LinkedinOutlined className="heroicon" style={{ marginRight: "100px" }} />
+      </a>
+    }
+  />
+
+  <Button
+    className="heroic"
+    icon={
+      <a href="https://github.com/cantikafiralya" target="_blank" rel="noopener noreferrer">
+        <GithubOutlined className="heroicon" />
+      </a>
+    }
+  />
+
+  <Button
+    className="heroic"
+    icon={
+      <a href="mailto:tikafiralya@gmail.com" target="_blank" rel="noopener noreferrer">
+        <MailOutlined className="heroicon" />
+      </a>
+    }
+  />
+
+  <Button
+    className="heroic"
+    icon={
+      <a href="https://wa.me/+6281333144271" target="_blank" rel="noopener noreferrer">
+        <WhatsAppOutlined className="heroicon" />
+      </a>
+    }
+  />
+</Space>
+
+                </div>
+              </div>
+            </div>
+            <h1
+              style={{
+                color: "white",
+                marginTop: "-2%",
+              }}
+            >
+              test
+            </h1>
           </div>
-        ) : (
-          <div
-            className="CARD"
-            style={{
-              zIndex: 0,
-            }}
-          >
-            {section === "food" ? <FoodMenu /> : <DrinkMenu />}
-          </div>
-        )}
-      </section>
 
-      <section className="customer-feedback">
-        <h2 className="titleS">Our Customer FeedBack</h2>
-        <div>{isMobile ? <FeedBackReviewMobile /> : <FeedBackReview />}</div>
-        <div>{isMobile ? <SubsFormMobile /> : <SubsForm />}</div>
-      </section>
+          {isMobile ? <HeroCarousel /> : <HeroRow />}
 
-      <section id="contact" className="CONTACT">
-        <Row justify="center" align="middle">
-          <Col
-            xs={24}
-            sm={24}
-            md={24}
-            lg={24}
-            xl={24}
-            className="cont-container"
-          >
-            <Space direction="horizontal">
-              <Row gutter={[12, 32]} justify="center">
-                <Col xs={24} sm={24} md={16} lg={16} xl={16}>
-                  <Space direction="vertical" className="container-col-contact">
-                    <img src={Logo} alt="logo" className="contact-nusa" />
-                    <span className="text-experience">
-                      Experience the best of Nusantara cuisine at your
-                      fingertips.
-                    </span>
-                    <span className="cont-us">Contact Us</span>
-                    <div className="divider-cont-us" />
-                    <Row justify="start" align="middle">
-                      <div className="icon-container">
-                        <PhoneOutlined
-                          style={{
-                            fontSize: "25px",
-                            transform: "rotate(90deg)",
-                          }}
-                        />
-                      </div>
-                      <span className="phone-mail">+628592617712</span>
-                    </Row>
-                    <Row justify="start" align="middle">
-                      <div className="icon-container">
-                        <MailOutlined
-                          style={{
-                            fontSize: "25px",
-                          }}
-                        />
-                      </div>
-                      <span className="phone-mail">halo@nusameal.com</span>
-                    </Row>
-                  </Space>
-                </Col>
-                <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-                  <Space direction="vertical" className="container-col-contact">
-                    <Button className="btn-google" />
-                    <Row gutter={12}>
-                      <Col span={8}>
-                        <ul style={{ paddingLeft: "0px" }}>
-                          <li className="list-btn-contact">
-                            <Button className="btn-list" type="text">
-                              Home
-                            </Button>
-                          </li>
-                          <li className="list-btn-contact">
-                            <Button className="btn-list" type="text">
-                              Service
-                            </Button>
-                          </li>
-                          <li className="list-btn-contact">
-                            <Button className="btn-list" type="text">
-                              Menu
-                            </Button>
-                          </li>
-                          <li className="list-btn-contact">
-                            <Button className="btn-list" type="text">
-                              Contact
-                            </Button>
-                          </li>
-                        </ul>
-                      </Col>
-                      <Col span={16}>
-                        <ul style={{ paddingLeft: "0px" }}>
-                          <li className="list-btn-contact">
-                            <Button className="btn-list" type="text">
-                              Terms and Conditions
-                            </Button>
-                          </li>
-                          <li className="list-btn-contact">
-                            <Button className="btn-list" type="text">
-                              Support
-                            </Button>
-                          </li>
-                          <li className="list-btn-contact">
-                            <Button className="btn-list" type="text">
-                              Privacy Policy
-                            </Button>
-                          </li>
-                          <li className="list-btn-contact">
-                            <Space
-                              wrap
-                              direction="horizontal"
-                              className="container-btn-social"
-                            >
-                              <Button
-                                className="btn-social"
-                                icon={
-                                  <FacebookOutlined className="icon-social" />
-                                }
-                              />
-
-                              <Button
-                                className="btn-social"
-                                icon={
-                                  <InstagramOutlined className="icon-social" />
-                                }
-                              />
-                              <Button
-                                className="btn-social"
-                                icon={
-                                  <TwitterOutlined className="icon-social" />
-                                }
-                              />
-                              <Button
-                                className="btn-social"
-                                icon={
-                                  <YoutubeOutlined className="icon-social" />
-                                }
-                              />
-                              <Button
-                                className="btn-social"
-                                icon={<PhoneOutlined className="icon-social" />}
-                              />
-                            </Space>
-                          </li>
-                        </ul>
-                      </Col>
-                    </Row>
-                  </Space>
-                </Col>
-              </Row>
-            </Space>
-          </Col>
+          <section id="services" className="SERVICE">
+            <h2 className="titleS">
+              Skill
+            </h2>
+            <div>
+            <div className="heroexcess">
+      <Space direction="horizontal">
+        <Row justify="center">
+          {heroex.map((item) => (
+            <Col className="heroexc">
+              <div className="herocontent">
+                <img className="hlogo" src={item.logo} alt="logo" />
+                <div className="hjuduldes">
+                  <p className="hjudul">{item.judul}</p>
+                  <p className="hdes">{item.desc}</p>
+                </div>
+              </div>
+            </Col>
+          ))}
         </Row>
-      </section>
+      </Space>
+    </div>
+            </div>
+          </section>
+
+          <section id="menu" className="MENU">
+            <h2 className="titleM">This Month Hottest Menu</h2>
+            <p className="descM">
+              the best of Indonesia's culinary treasures, all in one place
+            </p>
+            <div>
+              <Row justify="center" className="rowM" style={{ zIndex: 0 }}>
+                <Radio.Group
+                  defaultValue="food"
+                  value={section}
+                  onChange={onChange}
+                >
+                  <Radio.Button
+                    className="food"
+                    value="food"
+                    style={{ zIndex: 0 }}
+                  >
+                    Food's
+                  </Radio.Button>
+                  <Radio.Button
+                    className="drink"
+                    style={{ zIndex: 0 }}
+                    value="drink"
+                  >
+                    Drink's
+                  </Radio.Button>
+                </Radio.Group>
+              </Row>
+            </div>
+            <p className="lihat">Lihat Semua</p>
+            {isMobile ? (
+              <div
+                className="car"
+                style={{
+                  zIndex: 0,
+                  justifyContent: "center",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                {section === "food" ? (
+                  <FoodMenuCarousel />
+                ) : (
+                  <DrinkMenuCarousel />
+                )}
+              </div>
+            ) : (
+              <div
+                className="CARD"
+                style={{
+                  zIndex: 0,
+                }}
+              >
+                {section === "food" ? <FoodMenu /> : <DrinkMenu />}
+              </div>
+            )}
+          </section>
+
+          <section className="customer-feedback">
+            <h2 className="titleS">Our Customer FeedBack</h2>
+            <div>
+              {isMobile ? <FeedBackReviewMobile /> : <FeedBackReview />}
+            </div>
+            <div>{isMobile ? <SubsFormMobile /> : <SubsForm />}</div>
+          </section>
+
+          <section id="contact" className="CONTACT">
+            <Row justify="center" align="middle">
+              <Col
+                xs={24}
+                sm={24}
+                md={24}
+                lg={24}
+                xl={24}
+                className="cont-container"
+              >
+                <Space direction="horizontal">
+                  <Row gutter={[12, 32]} justify="center">
+                    <Col xs={24} sm={24} md={16} lg={16} xl={16}>
+                      <Space
+                        direction="vertical"
+                        className="container-col-contact"
+                      >
+                        <img src={Logo} alt="logo" className="contact-nusa" />
+                        <span className="text-experience">
+                          Experience the best of Nusantara cuisine at your
+                          fingertips.
+                        </span>
+                        <span className="cont-us">Contact Us</span>
+                        <div className="divider-cont-us" />
+                        <Row justify="start" align="middle">
+                          <div className="icon-container">
+                            <PhoneOutlined
+                              style={{
+                                fontSize: "25px",
+                                transform: "rotate(90deg)",
+                              }}
+                            />
+                          </div>
+                          <span className="phone-mail">+628592617712</span>
+                        </Row>
+                        <Row justify="start" align="middle">
+                          <div className="icon-container">
+                            <MailOutlined
+                              style={{
+                                fontSize: "25px",
+                              }}
+                            />
+                          </div>
+                          <span className="phone-mail">halo@nusameal.com</span>
+                        </Row>
+                      </Space>
+                    </Col>
+                    <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+                      <Space
+                        direction="vertical"
+                        className="container-col-contact"
+                      >
+                        <Button className="btn-google" />
+                        <Row gutter={12}>
+                          <Col span={8}>
+                            <ul style={{ paddingLeft: "0px" }}>
+                              <li className="list-btn-contact">
+                                <Button className="btn-list" type="text">
+                                  Home
+                                </Button>
+                              </li>
+                              <li className="list-btn-contact">
+                                <Button className="btn-list" type="text">
+                                  Service
+                                </Button>
+                              </li>
+                              <li className="list-btn-contact">
+                                <Button className="btn-list" type="text">
+                                  Menu
+                                </Button>
+                              </li>
+                              <li className="list-btn-contact">
+                                <Button className="btn-list" type="text">
+                                  Contact
+                                </Button>
+                              </li>
+                            </ul>
+                          </Col>
+                          <Col span={16}>
+                            <ul style={{ paddingLeft: "0px" }}>
+                              <li className="list-btn-contact">
+                                <Button className="btn-list" type="text">
+                                  Terms and Conditions
+                                </Button>
+                              </li>
+                              <li className="list-btn-contact">
+                                <Button className="btn-list" type="text">
+                                  Support
+                                </Button>
+                              </li>
+                              <li className="list-btn-contact">
+                                <Button className="btn-list" type="text">
+                                  Privacy Policy
+                                </Button>
+                              </li>
+                              <li className="list-btn-contact">
+                                <Space
+                                  wrap
+                                  direction="horizontal"
+                                  className="container-btn-social"
+                                >
+                                  <Button
+                                    className="btn-social"
+                                    icon={
+                                      <FacebookOutlined className="icon-social" />
+                                    }
+                                  />
+
+                                  <Button
+                                    className="btn-social"
+                                    icon={
+                                      <InstagramOutlined className="icon-social" />
+                                    }
+                                  />
+                                  <Button
+                                    className="btn-social"
+                                    icon={
+                                      <TwitterOutlined className="icon-social" />
+                                    }
+                                  />
+                                  <Button
+                                    className="btn-social"
+                                    icon={
+                                      <YoutubeOutlined className="icon-social" />
+                                    }
+                                  />
+                                  <Button
+                                    className="btn-social"
+                                    icon={
+                                      <PhoneOutlined className="icon-social" />
+                                    }
+                                  />
+                                </Space>
+                              </li>
+                            </ul>
+                          </Col>
+                        </Row>
+                      </Space>
+                    </Col>
+                  </Row>
+                </Space>
+              </Col>
+            </Row>
+          </section>
+        </div>
+      ))}
     </div>
   );
 };
@@ -595,13 +653,8 @@ function SubsForm() {
             <Button type="primary">Subscribe</Button>
           </Space.Compact>
         </div>
-         <br /> 
-         <br /> 
-
-        <Link to="/admin">
-            <Button  style={{ backgroundColor: 'transparent', border: 'none' }}>{""}</Button>
-      </Link>
-      
+        <br />
+        <br />
       </div>
     </div>
   );
